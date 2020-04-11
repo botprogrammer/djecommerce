@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+<style>
+
+.ifield{
+    margin-bottom: 10px;
+}
+p{
+    color: black;
+}
+
+</style>
+<form method="POST">
+    <div class="jumbotron text-center">
+        <p class="ifield"><h3>You can log in here!</h3></p><br>
+
+        {% csrf_token %}
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% endif %}
+        <input type="text" class="ifield" name="username" placeholder="username"><br> 
+        <input type="password" class="ifield" name="password" placeholder="password"><br> 
+        <button class="ifield" type="submit">Submit</button><br>
+
+    </div>
+
+        <div class="text-center">
+            {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        </div>
+     
+</form>
+
+
+{% endblock %}

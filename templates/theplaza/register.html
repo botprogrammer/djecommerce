@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+{% block body %}
+
+<style>
+    .ifield{
+        margin-bottom: 10px;
+    }
+    p{
+        color: black;
+    }
+</style>
+
+{% csrf_token %}
+<div class="jumbotron text-center">
+    <form method="POST">
+        {% csrf_token %}
+        <h3>Register here!</h3><br>
+    
+            <input type="text" class="ifield" name="first_name" placeholder="first_name">
+            <input type="text" class="ifield" name="last_name" placeholder="last_name"><br>
+            <input type="text" class="ifield" name="username" placeholder="username">
+            <input type="text" class="ifield" name="email" placeholder="email"><br>
+            <input type="password" class="ifield" name="password1" placeholder="password"><br>
+            <input type="password" class="ifield" name="password2" placeholder="confirm password"><br>
+            <button class="ifield" type="submit">Submit</button>
+    </form>
+</div>
+
+        <div class="text-center">
+            {% if messages %}
+            {% for message in messages %}
+                <p><h3>{{ message }}</h3></p>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+{% endblock %}
