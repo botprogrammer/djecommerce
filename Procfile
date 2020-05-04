@@ -1,1 +1,1 @@
-web: gunicorn djecommerce2.wsgi --log -file -
+web: gunicorn project.wsgi:application --log-file - --log-level debug
