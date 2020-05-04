@@ -19,6 +19,7 @@ mccabe==0.6.1
 oauthlib==3.0.1
 pep8==1.7.1
 Pillow==6.2.0
+psycopg2==2.8.5
 pycodestyle==2.5.0
 pygame==1.9.6
 pylint==2.4.4
