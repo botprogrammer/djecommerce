@@ -71,7 +71,7 @@ DATABASES = {
         'NAME': 'djecommerce',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'localhost',
+        'HOST': 'biu-ecommerce.herokuapp.com',
         'PORT': '5432',
     }
 }
