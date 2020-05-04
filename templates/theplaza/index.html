@@ -20,71 +20,84 @@
 		</div>
 	</header>
 	<!-- Header section end -->
-
-	<!-- Hero section -->
-	<section class="hero-section set-bg" data-setbg="{% static 'img/bg.jpg' %}">
-		<div class="hero-slider owl-carousel">
-			<div class="hs-item">
-				<div class="hs-left"><img src="{% static 'img/slider-img.png' %}" alt=""></div>
-				<div class="hs-right">
-					<div class="hs-content">
-						<div class="price">from $19.90</div>
-						<h2><span>2018</span> <br>summer collection</h2>
-						<a href="" class="site-btn">Shop NOW!</a>
-					</div>	
-				</div>
-			</div>
-			<div class="hs-item">
-				<div class="hs-left"><img src="{% static 'img/slider-img.png' %}" alt=""></div>
-				<div class="hs-right">
-					<div class="hs-content">
-						<div class="price">from $19.90</div>
-						<h2><span>2018</span> <br>summer collection</h2>
-						<a href="" class="site-btn">Shop NOW!</a>
-					</div>	
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Hero section end -->
-
-	
+	{% if messages %}
+	{% for message in messages %}
+	<div class="alert alert-{{message.tags}} alert-dismissible fade show ml-auto mr-auto" style="width: 80%; margin-top: 20px;" role="alert">
+		<p style="color: black; margin: 0;">
+				<h8>{{message}}</h8>
+		</p>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>
+	{% endfor %}
+	{% endif %}
 	<!-- Intro section -->
 	<section class="text-center mb-4" style="margin-top: 50px;">
 
 		<div class="row wow fadeIn">
-
+			{% for item in object_list %}
 			<div class="col-lg-3 col-md-6 mb-4" style="margin-left:50px;">
 	
-				<div class="card" style="width: 18rem;">
-					<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/1.jpg" class="card-img-top" alt="...">
-					<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<a href="{% url 'ecommerce:cart' %}">Add to cart</a>
+				<div class="card card-cascade card-ecommerce">
+					<div class="view view-cascade overlay">
+					<img class="card-img-top" style="height: 250px;" src="{{item.image.url}}"
+						alt="">
+					<a>
+						<div class="mask rgba-white-slight"></div>
+					</a>
 					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6 mb-4" style="margin-left:50px;">
-	
-				<div class="card" style="width: 18rem; ">
-					<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/1.jpg" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<a href="{% url 'ecommerce:cart' %}">Add to cart</a>
+				
+					<!--Card content-->
+					<div class="card-body card-body-cascade text-center">
+					<!--Category & Title-->
+					<h4 class="card-title"><strong><a href="{{item.get_absolute_url}}">{{item.name}}</a></strong></h4>
+					<!--Description-->
+					<p class="card-text">{{item.description}}
+					</p>
+				
+					<!--Card footer-->
+					<div class="card-footer" style="overflow: hidden;">
+						<div class="float-left">
+							{% if item.discount_price  %}
+								<span style="color:green;">{{item.discount_price}}$</span>
+								<span style="color:red; text-decoration: line-through;">{{item.price}}$</span>
+							{% else %}
+								<span style="color:green;">{{item.price}}$</span>
+							{% endif %}
+						</div>
+						<div class="float-right" style="margin-top: 4px;"><a title="Add to Wishlist" href="#"><i
+							class="far fa-heart"></i></a></div>
 					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6 mb-4" style="margin-left:50px;">
-				<div class="card" style="width: 18rem;">
-					<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/1.jpg" class="card-img-top" alt="...">
-					<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<a href="{% url 'ecommerce:cart' %}">Add to cart</a>
+				
 					</div>
+					<!--/.Card content-->
 				</div>
-			</div>
+				<!--/.Card-->
+				</div>
+			{% endfor %}
 		</div>
-  
+			<nav aria-label="Page navigation example" style="margin-left: 40%;">
+				<ul class="pagination">
+				  <li class="page-item">
+					{% if page_obj.has_previous %}
+					<a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+					  <span aria-hidden="true">&laquo;</span>
+					  <span class="sr-only">Previous</span>
+					</a>
+					{% endif %}
+				  </li>
+				  <li class="page-item"><a class="page-link" href="{{ page_obj.number }}">{{ page_obj.number }}</a></li>
+				  <li class="page-item">
+					{% if page_obj.has_next %}
+					<a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+					  <span aria-hidden="true">&raquo;</span>
+					  <span class="sr-only">Next</span>
+					</a>
+					{% endif %}
+				  </li>
+				</ul>
+			  </nav>
 	  </section>
 	<!-- Intro section end -->
 

@@ -1,128 +1,47 @@
+{% extends 'base.html' %}
 {% load static %}
 
-
-<!DOCTYPE html>
-<html lang="zxx">
-
+{% block body %}
 <body>
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-	
-	<!-- Header section -->
-	<header class="header-section header-normal">
-		<div class="container-fluid">
-			<!-- logo -->
-			<div class="site-logo">
-				<img src="{% static 'img/logo.png' %} " alt="logo">
-			</div>
-			<!-- responsive -->
-			<div class="nav-switch">
-				<i class="fa fa-bars"></i>
-			</div>
-			<div class="header-right">
-				<a href="cart.html" class="card-bag"><img src="{% static 'img/icons/bag.png' %}" alt=""><span>2</span></a>
-				<a href="#" class="search"><img src="img/icons/search.png" alt=""></a>
-			</div>
-			<!-- site menu -->
-			<ul class="main-menu">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="#">Woman</a></li>
-				<li><a href="#">Man</a></li>
-				<li><a href="#">LookBook</a></li>
-				<li><a href="#">Blog</a></li>
-				<li><a href="contact.html">Contact</a></li>
-			</ul>
-		</div>
-	</header>
-	<!-- Header section end -->
-
-
-	<!-- Page Info -->
-	<div class="page-info-section page-info">
-		<div class="container">
-			<div class="site-breadcrumb">
-				<a href="">Home</a> / 
-				<a href="">Sales</a> / 
-				<a href="">Bags</a> / 
-				<span>Shoulder bag</span>
-			</div>
-			<img src="{% static 'img/page-info-art.png' %}" alt="" class="page-info-art">
-		</div>
-	</div>
-	<!-- Page Info end -->
-
-
+	{% if messages %}
+	{% for message in messages %}
+	<div class="alert alert-{{message.tags}} alert-dismissible fade show ml-auto mr-auto" style="width: 80%; margin-top: 20px;" role="alert">
+		<p style="color: black; margin: 0;">
+				<h8>{{message}}</h8>
+		</p>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>
+	{% endfor %}
+	{% endif %}
 	<!-- Page -->
 	<div class="page-area product-page spad">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-6 text-center">
 					<figure>
-						<img class="product-big-img" src="{% static 'img/product/1.jpg' %}" alt="">
+						<img class="product-big-img" style="height: 200px; width: 200px;" src="{{object.image.url}}" alt="">
 					</figure>
-					<div class="product-thumbs">
-						<div class="product-thumbs-track">
-							<div class="pt" data-imgbigurl="img/product/1.jpg"><img src="{% static 'img/product/thumb-1.jpg' %}" alt=""></div>
-							<div class="pt" data-imgbigurl="img/product/2.jpg"><img src="{% static 'img/product/thumb-2.jpg' %}" alt=""></div>
-							<div class="pt" data-imgbigurl="img/product/3.jpg"><img src="{% static 'img/product/thumb-3.jpg' %}" alt=""></div>
-							<div class="pt" data-imgbigurl="img/product/4.jpg"><img src="{% static 'img/product/thumb-4.jpg' %}" alt=""></div>
-						</div>
-					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="product-content">
-						<h2>Black Shoulder bag</h2>
+						<h2>{{ object.name }}</h2>
 						<div class="pc-meta">
-							<h4 class="price">$19.50</h4>
-							<div class="review">
-								<div class="rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star is-fade"></i>
-								</div>
-								<span>(2 reviews)</span>
-							</div>
+							{% if object.discount_price %}
+							<h3 class="price" style="color: green;">{{object.discount_price}}$</h3>
+							<h3 class="price" style="color: red; text-decoration: line-through;">{{object.price}}$</h3>
+							{% else %}
+							<h3 class="price" style="color: green;">{{object.price}}$</h3>
+							{% endif %}
 						</div>
-						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolore- mque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
-						<div class="color-choose">
-							<span>Colors:</span>
-							<div class="cs-item">
-								<input type="radio" name="cs" id="black-color" checked>
-								<label class="cs-black" for="black-color"></label>
-							</div>
-							<div class="cs-item">
-								<input type="radio" name="cs" id="blue-color">
-								<label class="cs-blue" for="blue-color"></label>
-							</div>
-							<div class="cs-item">
-								<input type="radio" name="cs" id="yollow-color">
-								<label class="cs-yollow" for="yollow-color"></label>
-							</div>
-							<div class="cs-item">
-								<input type="radio" name="cs" id="orange-color">
-								<label class="cs-orange" for="orange-color"></label>
-							</div>
-						</div>
-						<div class="size-choose">
-							<span>Size:</span>
-							<div class="sc-item">
-								<input type="radio" name="sc" id="l-size" checked>
-								<label for="l-size">L</label>
-							</div>
-							<div class="sc-item">
-								<input type="radio" name="sc" id="xl-size">
-								<label for="xl-size">XL</label>
-							</div>
-							<div class="sc-item">
-								<input type="radio" name="sc" id="xxl-size">
-								<label for="xxl-size">XXL</label>
-							</div>
-						</div>
-						<a href="#" class="site-btn btn-line">ADD TO CART</a>
+						<p>{{ object.description }}</p>
+						<a href="{{ object.get_add_to_cart_url }}" class="site-btn btn-line">ADD TO CART</a>
+						<a href="{{ object.get_remove_form_cart_url }}" class="site-btn btn-danger btn-line">Remove From Cart</a>
 					</div>
 				</div>
 			</div>
@@ -155,101 +74,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="text-center rp-title">
-				<h5>Related products</h5>
-			</div>
-			<div class="row">
-				<div class="col-lg-3">
-					<div class="product-item">
-						<figure>
-							<img src="{% static 'img/product/1.jpg' %}" alt="">
-							<div class="pi-meta">
-								<div class="pi-m-left">
-									<img src="img/icons/eye.png" alt="">
-									<p>quick view</p>
-								</div>
-								<div class="pi-m-right">
-									<img src="img/icons/heart.png" alt="">
-									<p>save</p>
-								</div>
-							</div>
-						</figure>
-						<div class="product-info">
-							<h6>Long red Shirt</h6>
-							<p>$39.90</p>
-							<a href="#" class="site-btn btn-line">ADD TO CART</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3">
-					<div class="product-item">
-						<figure>
-							<img src="{% static 'img/product/2.jpg' %}" alt="">
-							<div class="bache">NEW</div>
-							<div class="pi-meta">
-								<div class="pi-m-left">
-									<img src="img/icons/eye.png" alt="">
-									<p>quick view</p>
-								</div>
-								<div class="pi-m-right">
-									<img src="img/icons/heart.png" alt="">
-									<p>save</p>
-								</div>
-							</div>
-						</figure>
-						<div class="product-info">
-							<h6>Hype grey shirt</h6>
-							<p>$19.50</p>
-							<a href="#" class="site-btn btn-line">ADD TO CART</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3">
-					<div class="product-item">
-						<figure>
-							<img src="{% static 'img/product/3.jpg' %}" alt="">
-							<div class="pi-meta">
-								<div class="pi-m-left">
-									<img src="img/icons/eye.png" alt="">
-									<p>quick view</p>
-								</div>
-								<div class="pi-m-right">
-									<img src="img/icons/heart.png" alt="">
-									<p>save</p>
-								</div>
-							</div>
-						</figure>
-						<div class="product-info">
-							<h6>long sleeve jacket</h6>
-							<p>$59.90</p>
-							<a href="#" class="site-btn btn-line">ADD TO CART</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3">
-					<div class="product-item">
-						<figure>
-							<img src="{% static 'img/product/4.jpg' %}" alt="">
-							<div class="bache sale">SALE</div>
-							<div class="pi-meta">
-								<div class="pi-m-left">
-									<img src="img/icons/eye.png" alt="">
-									<p>quick view</p>
-								</div>
-								<div class="pi-m-right">
-									<img src="img/icons/heart.png" alt="">
-									<p>save</p>
-								</div>
-							</div>
-						</figure>
-						<div class="product-info">
-							<h6>Denim men shirt</h6>
-							<p>$32.20 <span>RRP 64.40</span></p>
-							<a href="#" class="site-btn btn-line">ADD TO CART</a>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div> 
 	<!-- Page end -->
@@ -264,5 +88,5 @@
 	<script src="{% static 'js/sly.min.js' %}"></script>
 	<script src="{% static 'js/jquery.nicescroll.min.js' %}"></script>
 	<script src="{% static 'js/main.js' %}"></script>
-    </body>
-</html>
+	</body>
+{% endblock %}

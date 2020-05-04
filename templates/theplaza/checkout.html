@@ -6,12 +6,10 @@
 {% endblock %}
 
 {% block body %}
-<body>
-	<!-- Page Preloder -->
+<!-- <body>
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-	<!-- Page -->
 	<div class="page-area cart-page spad">
 		<div class="container">
 			<form class="checkout-form">
@@ -19,24 +17,18 @@
 					<div class="col-lg-6">
 						<h4 class="checkout-title">Billing Address</h4>
 						<div class="row">
-							<div class="col-md-6">
-								<input type="text" placeholder="First Name *">
-							</div>
-							<div class="col-md-6">
-								<input type="text" placeholder="Last Name *">
-							</div>
 							<div class="col-md-12">
-								<select>
-									<option>Country *</option>
-								</select>
+								
 								<input type="text" placeholder="Address *">
-								<input type="text">
 								<input type="text" placeholder="Zipcode *">
 								<select>
 									<option>City/Town *</option>
 								</select>
 								<select>
 									<option>Province *</option>
+								</select>
+								<select>
+									<option>Country *</option>
 								</select>
 								<input type="text" placeholder="Phone no *">
 								<input type="email" placeholder="Email Address *">
@@ -104,9 +96,79 @@
 				</div>
 			</form>
 		</div>
-	</div>
-	<!-- Page -->	
-
+	</div> -->
+	<!-- Page -->
+<body class="bg-light" data-gr-c-s-loaded="true">
+	<form method="POST">
+		{% csrf_token %}
+		<div class="container">
+	  <div class="py-5 text-center">
+		<h2>Checkout form</h2>
+	  </div>
+	<form>
+	  <div class="row">
+		<div class="col-md-6 ml-auto mr-auto">
+		  <form class="needs-validation" novalidate="">
+	
+			<div class="mb-3">
+			  <label for="email">Email <span class="text-muted"></span></label>
+			  {{form.email}}
+			  <div class="invalid-feedback">
+				Please enter a valid email address for shipping updates.
+			  </div>
+			</div>
+	
+			<div class="mb-3">
+			  <label for="address">Address</label>
+			  {{form.address}}
+			  <div class="invalid-feedback">
+				Please enter your shipping address.
+			  </div>
+			</div>
+	
+			<div class="mb-3">
+			  <label for="address2">Landmark <span class="text-muted">(Optional)</span></label>
+			  <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+			</div>
+	
+			<div class="row">
+			  <div class="col-md-4 mb-3">
+				<label for="zip">Zip</label>
+				{{form.zip}}
+				<div class="invalid-feedback">
+				  Zip code required.
+				</div>
+			  </div>
+			</div>
+			<hr class="mb-4">
+			<div class="custom-control custom-checkbox">
+			  <input {% if form.save_info.value %} checked="" {% endif %} type="checkbox" name="save_info" class="custom-control-input" id="save-info">
+			  <label class="custom-control-label" for="save-info">Save this information for next time</label>
+			</div>
+			<hr class="mb-4">
+	
+			<h4 class="mb-3">Payment</h4>
+	
+			<div class="d-block my-3">
+				{% for value, name in form.fields.payment_option.choices %}
+			  <div class="custom-control custom-radio">
+				<input id="{{name}}" name="payment_option" type="radio" value="{{ value }}" class="custom-control-input" required="">
+				<label class="custom-control-label" for="{{name}}">{{name}}</label>
+			  </div>
+			  {% endfor %}
+			</div>
+			
+			  </div>
+		</div>
+	</form>
+			<hr class="col-md-6">
+			<button class="btn btn-primary btn-lg btn-block col-md-6 ml-auto mr-auto" type="submit">Continue to checkout</button>
+		</div>
+	</form>
+	  </div>
+	  <br><br><br><br>
+	</div>	
+	</body>
 
 	<!--====== Javascripts & Jquery ======-->
 	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
@@ -116,7 +178,7 @@
 	<script src="{% static 'js/sly.min.js' %}"></script>
 	<script src="{% static 'js/jquery.nicescroll.min.js' %}"></script>
 	<script src="{% static 'js/main.js' %}"></script>
-	</body>
+	</body> 
 {% endblock %}	
 
 </html>
