@@ -22,7 +22,6 @@ Pillow==6.2.0
 psycopg2==2.8.5
 pycodestyle==2.5.0
 pygame==1.9.6
-pylint==2.4.4
 python-decouple==3.1
 python-git==2018.2.1
 python3-openid==3.1.0
