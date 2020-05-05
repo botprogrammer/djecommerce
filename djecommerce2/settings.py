@@ -12,7 +12,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'h168w_=kq3zj@9=+g@m*#%#8fadosbwi5$tkx!!l=0o4k_^a7#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =  True #config('DEBUG', default=False, cast=bool)
+DEBUG =  False #config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['localhost', 'biu-ecommerce.herokuapp.com']
 
