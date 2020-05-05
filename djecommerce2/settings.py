@@ -14,7 +14,7 @@ SECRET_KEY = 'h168w_=kq3zj@9=+g@m*#%#8fadosbwi5$tkx!!l=0o4k_^a7#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =  True #config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['biu-ecommerce.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'biu-ecommerce.herokuapp.com']
 
 
 # Application definition
@@ -72,7 +72,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'biu-ecommerce.herokuapp.com',
-        'PORT': '5432',
+        'PORT': '',
     }
 }
 
@@ -125,6 +125,6 @@ STATICFILES_DIRS = [
 # Email Management:
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = config('EMAIL_HOST', default='localhost')
+EMAIL_HOST = config('EMAIL_HOST', default='biu-ecommerce.herokuapp.com')
 EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
 EMAIL_USE_TLS = True
