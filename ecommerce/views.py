@@ -14,6 +14,7 @@ stripe.api_key = "sk_test_5qrilYpoZYzC1B4NDBSxkysy004KrgIebV"
 class HomeView(ListView):
     model = Item
     paginate_by = 3 
+    ordering = ['name']
     template_name = "theplaza/index.html"
 
 class ProductDetailView(DetailView):
